@@ -31,14 +31,24 @@ int main(){
     
     string number;
     cin >> number;
+    
+    
     if(n%2==1){
         vector<int> positions;
-    
+        
+    if(n==1){
+        if(k>0){
+            cout<<"9"<<endl;
+        }
+        else
+            cout<<number<<endl;
+    }
     for(int i=0;i<n/2;i++){
         if(k==0){
             bool flag=false;
             for(int j=i;j<n/2;j++){
-                if(number[n/2-1-i]!=number[n/2+i+1]){
+                if(number[n/2-1-j]!=number[n/2+j+1]){
+                    
                     cout<<"-1"<<endl;
                     flag=true;
                     break;
@@ -90,13 +100,20 @@ int main(){
     cout<<number<<endl;
         return 0;
     }
+    //end of code for odd numbers
+    
+    
+    
+    
     vector<int> positions;
+    
     
     for(int i=0;i<n/2;i++){
         if(k==0){
             bool flag=false;
             for(int j=i;j<n/2;j++){
-                if(number[n/2-1-i]!=number[n/2+i]){
+                if(number[n/2-1-j]!=number[n/2+j]){
+                    
                     cout<<"-1"<<endl;
                     flag=true;
                     break;
@@ -120,26 +137,31 @@ int main(){
         }
         
     }
-    /*cout<<"printing in between "<<number<<" value of k is "<<k<<endl;
-    for(int i=0;i<positions.size();i++){
-        cout<<positions[i]<<endl;
-    }*/
+    
+    cout<<"Number made palindrome and number of turns remaining = "<<k<<" "<<number<<endl;
+    
     bool flag=true;
+    
     for(int i=0;i<n/2;i++){
-        if(k<2)
+       
+        if(k<2){
             break;
+        }    
         if(number[i]!='9'){
             number[i]='9';
             number[n-i-1]='9';
+            if(positions.size()>0){
             int j=positions[positions.size()-1];
             if(j==i){
                 k+=1;
                 positions.pop_back();
-            }
+            }}
             k=k-2;
                 
         }
     }
+    
+    cout<<"After making the changes "<<number<<endl;
     if(k==1){
         int check=positions[positions.size()-1];
         number[check]='9';
